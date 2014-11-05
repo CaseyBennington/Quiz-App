@@ -73,7 +73,7 @@ $(document).ready(function() {
         if (answer == questions[currentQuestion].correct) {
             numberCorrect++;    
         }
-        if (numberCorrect == 1) {
+        /*if (numberCorrect == 1) {
             $(".score_cup").css("display", "none")
             $("#score_cup1").fadeIn();
         }
@@ -93,6 +93,7 @@ $(document).ready(function() {
             $(".score_cup").css("display", "none")
             $("#score_cup5").fadeIn();
         }
+        */
     }
 
     //load the next question
