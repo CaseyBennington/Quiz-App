@@ -3,36 +3,36 @@ $(document).ready(function() {
     var questions = [{
         question: "What percent of Soviet males born in 1923 did not survive WWII?",
         choices: ["40%", "60%", "80%", "90%"],
-        Num : 0,
-        correct : 3,
+        Num: 0,
+        correct: 3,
         fact: "Eighty percent of Soviet males born in 1923 didn't survive the war."
         },
         {
         question: "WWII ended when?",
         choices: ["May 23, 1945", "August 21, 1945", "September 2, 1945", "October 3, 1945"],
-        Num : 1,
-        correct : 3,
+        Num: 1,
+        correct: 3,
         fact: "WWII ended on September 2, 1945, when Japan signed a surrender agreement on the USS Missouri in Tokyo Bay."
         },
         {
         question: "Hamburgers did not exist during WWII. What were they called instead?",
         choices: ["Liberty Burgers", "Liberty Steaks", "Freedom Patties", "Hamburgers"],
-        Num : 2,
-        correct : 2,
+        Num: 2,
+        correct: 2,
         fact: "During WWII, hamburgers in the US were dubbed \"Liberty Steaks\" to avoid the German-sounding name."
         },
         {
-        question: "How young was the youngest US serviveman during WWII?",
+        question: "How young was the youngest US serviceman during WWII?",
         choices: ["10", "12", "15", "17"],
-        Num : 3,
-        correct : 2,
+        Num: 3,
+        correct: 2,
         fact: "The youngest US Serviceman was 12 year old Calvin Grahm, USN. He was wounded in combat and given a Dishonorable Discharge for lying about his age. (His benefits were later restored by an act of Congress.)"
         },
         {
         question: "In what year did the last Japanese soldier surrender?",
         choices: ["1944", "1945", "1955", "1974"],
-        Num : 4,
-        correct : 4,
+        Num: 4,
+        correct: 4,
         fact: "In 1974, a Japanese soldier named Hiroo Onoda came out of the jungle of the Pacific island of Lubang. He had been hiding there for 29 years, unaware that his country had surrendered."
     }]
     
@@ -60,12 +60,17 @@ $(document).ready(function() {
         currentQuestion = 0;
         //$(".score_cup").css("display", "none");
         //$("#score_cup0").css("display", "inline");
-        var newQuestion = '<div><span class="question">'+questions[currentQuestion].question+'</span><br></div><div id="answer_container"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><input type="button" id="retry_button" value="Try Again!"></div>';
+        var newQuestion = getNewQuestion();
         $("#question_container").html(newQuestion);
         //$("body div:eq(0)").after(newQuestion);
         $("#fact").html("");
         $("#fact_container").css("display", "none");
     });
+
+    function getNewQuestion() {
+        var newQuestion = '<div><span class="question">'+questions[currentQuestion].question+'</span><br></div><div id="answer_container"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><input type="button" id="retry_button" value="Try Again!"></div>';
+        return newQuestion;
+    }
 
     //update the score graphic
     function updateScore() {
@@ -98,12 +103,12 @@ $(document).ready(function() {
 
     //load the next question
     function nextQuestion() {
+        $(".question").remove();
+        $("#answer_container input").remove();
+        $("#answer_container span").remove();
         if (currentQuestion < 5) {
-            $(".question").remove();
-            $("#answer_container input").remove();
-            $("#answer_container span").remove();
 			$("#fact").hide();
-            var newQuestion = '<div><span class="question">'+questions[currentQuestion].question+'</span><br></div><div id="answer_container"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><input type="button" id="retry_button" value="Try Again!"></div>';
+            var newQuestion = getNewQuestion();
             $("#question_container").html(newQuestion);
             //$("body div:eq(0)").after(newQuestion);
             $("#fact_container").css("display", "block");
@@ -111,9 +116,6 @@ $(document).ready(function() {
             $("#fact").html(lastFact).fadeIn();
         }
         else {
-            $(".question").remove();
-            $("#answer_container input").remove();
-            $("#answer_container span").remove();
 			$("#last_question_fact").fadeOut();
             $("#submit").css("display", "none");
             $("#retry_button").css("display", "inline");
