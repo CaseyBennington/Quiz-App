@@ -60,7 +60,7 @@ $(document).ready(function() {
         currentQuestion = 0;
         //$(".score_cup").css("display", "none");
         //$("#score_cup0").css("display", "inline");
-        var newQuestion = '<div><span class="question">'+questions[currentQuestion].question+'</span><br></div><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><input type="button" id="retry_button" value="Try Again!"></div>';
+        var newQuestion = '<div><span class="question">'+questions[currentQuestion].question+'</span><br></div><div id="answer_container"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><input type="button" id="retry_button" value="Try Again!"></div>';
         $("#question_container").html(newQuestion);
         //$("body div:eq(0)").after(newQuestion);
         $("#fact").html("");
@@ -100,10 +100,10 @@ $(document).ready(function() {
     function nextQuestion() {
         if (currentQuestion < 5) {
             $(".question").remove();
-            $("#answer_holder input").remove();
-            $("#answer_holder span").remove();
+            $("#answer_container input").remove();
+            $("#answer_container span").remove();
 			$("#fact").hide();
-            var newQuestion = '<div><span class="question">'+questions[currentQuestion].question+'</span><br></div><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><input type="button" id="retry_button" value="Try Again!"></div>';
+            var newQuestion = '<div><span class="question">'+questions[currentQuestion].question+'</span><br></div><div id="answer_container"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><input type="button" id="retry_button" value="Try Again!"></div>';
             $("#question_container").html(newQuestion);
             //$("body div:eq(0)").after(newQuestion);
             $("#fact_container").css("display", "block");
@@ -112,8 +112,8 @@ $(document).ready(function() {
         }
         else {
             $(".question").remove();
-            $("#answer_holder input").remove();
-            $("#answer_holder span").remove();
+            $("#answer_container input").remove();
+            $("#answer_container span").remove();
 			$("#last_question_fact").fadeOut();
             $("#submit").css("display", "none");
             $("#retry_button").css("display", "inline");
@@ -123,11 +123,11 @@ $(document).ready(function() {
             $("#question_container div:eq(0)").css("display", "none");
             if (numberCorrect == 1) {
                 var finalScore = '<span id="final">Congratulations on making it through the quiz!  You correctly answered '+numberCorrect+' question.'
-                $("#answer_holder").html(finalScore);
+                $("#answer_container").html(finalScore);
             }
             else {
                 var finalScore = '<span id="final">Congratulations on making it through the quiz!  You correctly answered '+numberCorrect+' questions.'
-                $("#answer_holder").html(finalScore);
+                $("#answer_container").html(finalScore);
             }
         }
     }
