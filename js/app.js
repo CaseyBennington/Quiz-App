@@ -90,7 +90,7 @@ $(document).ready(function() {
     }
 
     function updateQuestionNumber() {
-        var questionNumber = '<span id="question_num">'+(currentQuestion+1)+' of '+questions.length+'</span>';
+        var questionNumber = '<span id="question_num">Question: '+(currentQuestion+1)+' of '+questions.length+'</span>';
         $("#qscore").html(questionNumber).fadeIn();
     }
 
