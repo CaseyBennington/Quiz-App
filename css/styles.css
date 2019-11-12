@@ -8,7 +8,7 @@
 	src: url(../font/1942.ttf);
 }
 html {
-	background-image:url(images/WWIIb.jpg);
+	background-image:url(../images/WWIIb.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: top center;
